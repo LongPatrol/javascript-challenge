@@ -25,6 +25,8 @@ function runEnter() {
   // Prevent the page from refreshing
   d3.event.preventDefault();
   
+  var tbodyRow = d3.select("")
+  tbody.remove(); 
   // Select the input element and get the raw HTML node
   var inputElement = d3.select("#datetime");
 
@@ -36,8 +38,10 @@ function runEnter() {
 
   var filteredData = data.filter(dateTime => dateTime.datetime === inputValue);
 
+  var tbody1 = d3.select("tbody");
+
   filteredData.forEach((sighting) => {
-    var row = tbody.append("tr");
+    var row = tbody1.append("tr");
     Object.entries(sighting).forEach(([key, value]) => {
       var cell = row.append("td");
       cell.text(value);
