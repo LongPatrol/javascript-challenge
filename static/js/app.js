@@ -1,8 +1,3 @@
-// from data.js
-var tableData = data;
-
-// YOUR CODE HERE!
-
 var tbody = d3.select("tbody");
 
 data.forEach((sighting) => {
@@ -25,9 +20,10 @@ function runEnter() {
   // Prevent the page from refreshing
   d3.event.preventDefault();
   
-  var tbodyRow = d3.select("")
-  tbody.remove(); 
-  // Select the input element and get the raw HTML node
+  //clear the table out from the whole list
+  d3.select("tbody").selectAll("tr").html("")
+ 
+  //select the input date
   var inputElement = d3.select("#datetime");
 
   // Get the value property of the input element
@@ -35,13 +31,11 @@ function runEnter() {
 
   console.log(inputValue);
   
-
+  //filter on the date
   var filteredData = data.filter(dateTime => dateTime.datetime === inputValue);
 
-  var tbody1 = d3.select("tbody");
-
   filteredData.forEach((sighting) => {
-    var row = tbody1.append("tr");
+    var row = tbody.append("tr");
     Object.entries(sighting).forEach(([key, value]) => {
       var cell = row.append("td");
       cell.text(value);
